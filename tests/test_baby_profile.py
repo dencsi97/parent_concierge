@@ -1,4 +1,3 @@
-from datetime import date
 from pathlib import Path
 
 from parent_concierge.tools import baby_profile_store

@@ -1,5 +1,4 @@
 from google.adk.agents import LlmAgent
-from google.adk.tools import FunctionTool
 from google.adk.models.google_llm import Gemini
 
 from ..config import config, retry_config

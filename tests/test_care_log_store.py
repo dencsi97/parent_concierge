@@ -14,7 +14,6 @@ def test_add_and_get_logs_for_day(tmp_path):
 
     # Build ISO strings
     today_str = today.isoformat()               # e.g. "2025-11-19"
-    yesterday_str = yesterday.isoformat()
 
     event_today_ts = datetime(
         today.year, today.month, today.day, 7, 10

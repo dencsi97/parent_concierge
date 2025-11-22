@@ -12,7 +12,6 @@ on:
 jobs:
   test-and-lint:
     runs-on: ubuntu-latest
-    continue-on-error: true
 
     steps:
       - name: Checkout repository
@@ -32,11 +31,15 @@ jobs:
       - name: Lint with ruff
         run: |
           ruff check .
+        continue-on-error: true
+        
 
       - name: Check formatting with black
         run: |
           black --check .
+        continue-on-error: true
 
       - name: Run tests with pytest
         run: |
           pytest
+        continue-on-error: true

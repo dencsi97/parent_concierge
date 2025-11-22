@@ -1,7 +1,6 @@
 from google.adk.agents import LlmAgent, ParallelAgent
 from google.adk.models.google_llm import Gemini
 from google.adk.code_executors import BuiltInCodeExecutor
-from google.adk.tools import FunctionTool
 
 from parent_concierge.tools.visualizations_tools import create_bar_chart_artifact
 
