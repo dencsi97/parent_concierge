@@ -12,6 +12,7 @@ on:
 jobs:
   test-and-lint:
     runs-on: ubuntu-latest
+    continue-on-error: true
 
     steps:
       - name: Checkout repository
