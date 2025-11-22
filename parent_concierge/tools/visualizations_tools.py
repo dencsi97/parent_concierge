@@ -77,8 +77,8 @@ async def create_bar_chart_artifact(
 
     ax.set_ylim(0, max_val * 1.35 + 10)
 
-    LABEL_OFFSET = 8 
-    ICON_OFFSET = 30  
+    LABEL_OFFSET = 8
+    ICON_OFFSET = 30
 
     icon_map = {
         "Feeds (ml)": FEED_ICON_IMG,
