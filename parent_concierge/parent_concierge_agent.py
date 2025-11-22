@@ -10,10 +10,6 @@ from parent_concierge.subagents.daily_summary_agent import daily_summary_agent
 
 from .config import config, retry_config
 
-# Prevent double-parent errors in ADK Eval by clearing parent references
-for agent in [onboarding_agent, care_event_agent, daily_summary_agent]:
-    agent.parent_agent = None
-
 # --- AGENT DEFINITIONS ---
 
 parent_concierge_agent = LlmAgent(

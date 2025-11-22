@@ -62,7 +62,6 @@ async def create_bar_chart_artifact(
     metrics = ["Feeds (ml)", "Naps (mins)", "Diapers"]
     values = [total_feed_ml, total_nap_minutes, diaper_count]
 
-    # --- Chart styling with safe label placement ---
     fig, ax = plt.subplots(figsize=(7, 4.5))
 
     bars = ax.bar(metrics, values, zorder=2)
@@ -76,12 +75,10 @@ async def create_bar_chart_artifact(
 
     max_val = max(values) if values else 0
 
-    # Headroom reduced so icons are not floating too high
     ax.set_ylim(0, max_val * 1.35 + 10)
 
-    # New tighter, safer spacing
-    LABEL_OFFSET = 8  # constant pixel offset for numeric labels
-    ICON_OFFSET = 30  # icon sits ~22px above label
+    LABEL_OFFSET = 8 
+    ICON_OFFSET = 30  
 
     icon_map = {
         "Feeds (ml)": FEED_ICON_IMG,
@@ -93,7 +90,6 @@ async def create_bar_chart_artifact(
         height = bar.get_height()
         x_center = bar.get_x() + bar.get_width() / 2
 
-        # --- Numeric label (much closer to bar now) ---
         ax.annotate(
             f"{value}",
             xy=(x_center, height),
@@ -104,7 +100,6 @@ async def create_bar_chart_artifact(
             fontsize=11,
         )
 
-        # --- Icon (just above numeric label, centered properly) ---
         icon_img = icon_map[metric_label]
         ab = AnnotationBbox(
             icon_img,
@@ -119,7 +114,6 @@ async def create_bar_chart_artifact(
 
     plt.tight_layout()
 
-    # Save to PNG buffer
     buf = io.BytesIO()
     plt.savefig(buf, format="png", dpi=120)
     plt.close(fig)

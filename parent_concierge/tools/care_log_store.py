@@ -37,7 +37,6 @@ def add_log(
     raw = json.loads(CARE_LOG_FILE.read_text(encoding="utf-8"))
 
     if not isinstance(raw, list):
-        # In case file is corrupted / manually edited
         raw = []
 
     event: Dict[str, Any] = {
