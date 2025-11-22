@@ -87,7 +87,6 @@ async def chat_loop() -> None:
         await runner.close()
 
 
-
 def main() -> None:
 
     project_root = Path(__file__).resolve().parent.parent

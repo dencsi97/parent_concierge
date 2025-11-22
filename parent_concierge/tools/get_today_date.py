@@ -1,5 +1,6 @@
 from datetime import date
 
+
 def get_today_date() -> str:
     """
     Return today's date as an ISO string.

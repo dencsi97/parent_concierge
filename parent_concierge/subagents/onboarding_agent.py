@@ -42,8 +42,6 @@ onboarding_agent = LlmAgent(
         - Do not ask for sensitive information beyond what's required for the Baby Profile.
         - If the user expresses any health concern while answering, remind them that you cannot provide medical advice and that they should speak to a health professional.
     """,
-    tools=[
-        FunctionTool(save_profile)
-    ],
-    output_key="onboarding_output"
+    tools=[FunctionTool(save_profile)],
+    output_key="onboarding_output",
 )

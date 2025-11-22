@@ -18,7 +18,7 @@ def add_log(
     timestamp: str,
     volume_ml: Optional[int] = None,
     duration_minutes: Optional[int] = None,
-    notes: Optional[str] = None
+    notes: Optional[str] = None,
 ) -> Dict[str, str]:
     """
     Append a care event to the log file.

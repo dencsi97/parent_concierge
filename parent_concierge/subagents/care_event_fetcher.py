@@ -62,9 +62,6 @@ care_event_fetcher = LlmAgent(
             → Simply determine the correct date and fetch the logs as normal.
         - Do NOT make any clinical interpretations or suggestions.
     """,
-    tools=[
-        FunctionTool(get_logs_for_day),
-        FunctionTool(get_today_date)
-    ],
-    output_key="logs_for_day"
+    tools=[FunctionTool(get_logs_for_day), FunctionTool(get_today_date)],
+    output_key="logs_for_day",
 )

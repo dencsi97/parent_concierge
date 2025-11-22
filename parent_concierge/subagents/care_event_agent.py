@@ -64,9 +64,6 @@ care_event_agent = LlmAgent(
             - `add_log` (for saving the event)
 
     """,
-    tools=[
-        FunctionTool(add_log),
-        FunctionTool(get_today_date)
-    ],
-    output_key="care_event_log_output"
+    tools=[FunctionTool(add_log), FunctionTool(get_today_date)],
+    output_key="care_event_log_output",
 )

@@ -68,5 +68,5 @@ summary_output_agent = LlmAgent(
         - Return raw JSON from other agents directly to the user.
         - Expose implementation details like "day_stats" or "day_visualization" in the message.
     """,
-    output_key="summary_output"
+    output_key="summary_output",
 )

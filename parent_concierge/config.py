@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from google.genai import types
 
+
 @dataclass
 class ConciergeConfiguration:
     """Configuration for ai models.
@@ -10,6 +11,7 @@ class ConciergeConfiguration:
     """
 
     worker_model: str = "gemini-2.5-flash"
+
 
 retry_config = types.HttpRetryOptions(
     attempts=5,  # Maximum retry attempts

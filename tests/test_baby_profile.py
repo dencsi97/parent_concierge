@@ -2,6 +2,7 @@ from pathlib import Path
 
 from parent_concierge.tools import baby_profile_store
 
+
 def test_get_profile_initially_empty(tmp_path):
     # Redirect PROFILE_FILE to a temp file so we don't touch real data
     test_file: Path = tmp_path / "profiles.json"

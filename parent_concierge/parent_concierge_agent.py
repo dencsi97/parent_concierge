@@ -17,7 +17,7 @@ for agent in [onboarding_agent, care_event_agent, daily_summary_agent]:
 # --- AGENT DEFINITIONS ---
 
 parent_concierge_agent = LlmAgent(
-    name= "parent_concierge_agent",
+    name="parent_concierge_agent",
     model=Gemini(model=config.worker_model, retry_options=retry_config),
     description="""
         Top-level chat agent that talks to new parents,
@@ -120,12 +120,10 @@ parent_concierge_agent = LlmAgent(
             - Do not mention agent names, tool names, or JSON keys in your replies to the user.
 
     """,
-    sub_agents=[
-        onboarding_agent
-    ],
+    sub_agents=[onboarding_agent],
     tools=[
         FunctionTool(get_profile),
         AgentTool(care_event_agent),
-        AgentTool(daily_summary_agent)
-    ]
+        AgentTool(daily_summary_agent),
+    ],
 )

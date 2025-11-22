@@ -34,5 +34,5 @@ daily_summary_agent = SequentialAgent(
             }
 
         The final output `summary_output` is returned to the orchestrator.
-    """
+    """,
 )

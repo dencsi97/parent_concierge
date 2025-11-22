@@ -50,7 +50,7 @@ compute_stats = LlmAgent(
         - Return a stats object with counts = 0 and totals = 0.
     """,
     code_executor=BuiltInCodeExecutor(),
-    output_key="day_stats"
+    output_key="day_stats",
 )
 
 
@@ -86,10 +86,8 @@ create_visualization = LlmAgent(
         - Do NOT reference other agents.
         - If logs_for_day is empty, do NOT call the tool.
     """,
-    tools=[
-        create_bar_chart_artifact
-    ],
-    output_key="day_visualization"
+    tools=[create_bar_chart_artifact],
+    output_key="day_visualization",
 )
 
 narrative_summary = LlmAgent(
@@ -121,7 +119,7 @@ narrative_summary = LlmAgent(
         5. Do NOT output JSON. Output natural language only.
         6. Your text must be returned under the key `day_summary`.
     """,
-    output_key="day_summary"
+    output_key="day_summary",
 )
 
 parallel_summary_team = ParallelAgent(
@@ -134,5 +132,5 @@ parallel_summary_team = ParallelAgent(
         - narrative_summary   → produces `day_summary` (natural-language text)
 
         Each agent is independent and does not read other agents' outputs.
-    """
+    """,
 )

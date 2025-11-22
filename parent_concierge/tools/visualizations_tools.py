@@ -80,8 +80,8 @@ async def create_bar_chart_artifact(
     ax.set_ylim(0, max_val * 1.35 + 10)
 
     # New tighter, safer spacing
-    LABEL_OFFSET = 8      # constant pixel offset for numeric labels
-    ICON_OFFSET = 30     # icon sits ~22px above label
+    LABEL_OFFSET = 8  # constant pixel offset for numeric labels
+    ICON_OFFSET = 30  # icon sits ~22px above label
 
     icon_map = {
         "Feeds (ml)": FEED_ICON_IMG,
@@ -113,7 +113,7 @@ async def create_bar_chart_artifact(
             frameon=False,
             boxcoords="offset points",
             box_alignment=(0.5, 0.5),
-            pad=0.0
+            pad=0.0,
         )
         ax.add_artist(ab)
 
