@@ -11,12 +11,10 @@ from google.adk.plugins.logging_plugin import LoggingPlugin
 from google.genai import types
 from google.adk.artifacts import InMemoryArtifactService
 
-# 👇 IMPORTANT: use YOUR agent, not the built-in examples
 from parent_concierge.parent_concierge_agent import parent_concierge_agent
 
 
 # ---- Constants ----
-# Must match the top-level package where your agent lives
 APP_NAME = "parent_concierge"
 USER_ID = "dev-user-1"
 SESSION_ID = "local-dev-session-1"
@@ -31,7 +29,7 @@ def build_user_message(text: str) -> types.Content:
 
 
 async def chat_loop() -> None:
-    # 1. Set up session service and create a session (async)
+    # Set up session service and create a session (async)
     session_service = InMemorySessionService()
     artifact_service = InMemoryArtifactService()
 
@@ -41,7 +39,7 @@ async def chat_loop() -> None:
         session_id=SESSION_ID,
     )
 
-    # 2. Set up logging plugin + runner
+    # Set up logging plugin + runner
     logging_plugin = LoggingPlugin()
 
     runner = Runner(
@@ -56,7 +54,7 @@ async def chat_loop() -> None:
         print("👶 New Parent Concierge (CLI dev mode)")
         print("Type 'exit' or 'quit' to end.\n")
 
-        # 3. Simple REPL over one persistent session so the runner keeps context
+        # Simple REPL over one persistent session so the runner keeps context
         # across turns under the fixed SESSION_ID.
         while True:
             user_text = input("You: ").strip()
@@ -77,7 +75,7 @@ async def chat_loop() -> None:
                 session_id=SESSION_ID,
                 new_message=user_message,
             ):
-                # Let LoggingPlugin do the heavy lifting in your terminal
+                
                 if event.is_final_response() and event.content and event.content.parts:
                     final_text = event.content.parts[0].text
 
