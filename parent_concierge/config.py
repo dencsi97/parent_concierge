@@ -14,6 +14,8 @@ class ConciergeConfiguration:
 
 
 retry_config = types.HttpRetryOptions(
+    # Backoff tuned for transient Google LLM rate-limit/server responses so
+    # retries smooth over occasional 429/5xx errors without long waits.
     attempts=5,
     exp_base=7,
     initial_delay=1,

@@ -8,7 +8,8 @@ import google.genai.types as types
 from google.adk.tools import ToolContext
 
 
-# Pre-load icons (64x64 PNGs) from the assets folder
+# Pre-load icons (64x64 PNGs) from the assets folder so repeated tool calls
+# reuse cached images instead of re-reading from disk inside the async flow.
 ASSETS_DIR = Path(__file__).resolve().parent.parent / "assets"
 FEED_ICON_PATH = ASSETS_DIR / "feed_icon.png"
 NAP_ICON_PATH = ASSETS_DIR / "nap_icon.png"
@@ -78,7 +79,7 @@ async def create_bar_chart_artifact(
     ax.set_ylim(0, max_val * 1.35 + 10)
 
     LABEL_OFFSET = 8
-    ICON_OFFSET = 30
+    ICON_OFFSET = 30  # Spacing keeps labels/icons from overlapping small bars.
 
     icon_map = {
         "Feeds (ml)": FEED_ICON_IMG,
