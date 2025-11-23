@@ -56,7 +56,8 @@ async def chat_loop() -> None:
         print("👶 New Parent Concierge (CLI dev mode)")
         print("Type 'exit' or 'quit' to end.\n")
 
-        # 3. Simple REPL over one persistent session
+        # 3. Simple REPL over one persistent session so the runner keeps context
+        # across turns under the fixed SESSION_ID.
         while True:
             user_text = input("You: ").strip()
             if not user_text:
@@ -68,7 +69,9 @@ async def chat_loop() -> None:
             user_message = build_user_message(user_text)
             final_text = None
 
-            # Stream events asynchronously
+            # Stream events asynchronously: LoggingPlugin surfaces interim text in
+            # the terminal, while final_text only captures the assistant's last
+            # message for a clean summary printout.
             async for event in runner.run_async(
                 user_id=USER_ID,
                 session_id=SESSION_ID,

@@ -3,6 +3,8 @@ from pathlib import Path
 from typing import Dict, Any
 
 PROFILE_FILE = Path("data/profiles.json")
+# Single-profile JSON store that is created on first access; this module does
+# not manage multiple users or require a preexisting file.
 
 
 def _ensure_file_exists() -> None:

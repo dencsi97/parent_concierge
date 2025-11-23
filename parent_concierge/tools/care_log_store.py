@@ -78,7 +78,7 @@ def get_logs_for_day(day: str) -> List[Dict[str, Any]]:
     try:
         target_date = date_cls.fromisoformat(day)
     except ValueError:
-        # If date is bad, just return no events
+        # If date is bad, just return no events instead of raising.
         return []
 
     events: List[Dict[str, Any]] = []
@@ -91,7 +91,7 @@ def get_logs_for_day(day: str) -> List[Dict[str, Any]]:
         try:
             ts = datetime.fromisoformat(ts_str)
         except ValueError:
-            # Skip bad timestamps
+            # Skip malformed timestamps so one bad entry doesn't break the day view.
             continue
 
         if ts.date() == target_date:
