@@ -123,3 +123,5 @@ parent_concierge_agent = LlmAgent(
         AgentTool(daily_summary_agent),
     ],
 )
+
+root_agent = parent_concierge_agent

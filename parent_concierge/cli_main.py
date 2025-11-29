@@ -11,7 +11,7 @@ from google.adk.plugins.logging_plugin import LoggingPlugin
 from google.genai import types
 from google.adk.artifacts import InMemoryArtifactService
 
-from parent_concierge.parent_concierge_agent import parent_concierge_agent
+from parent_concierge.parent_concierge_agent import root_agent
 
 
 # ---- Constants ----
@@ -43,7 +43,7 @@ async def chat_loop() -> None:
     logging_plugin = LoggingPlugin()
 
     runner = Runner(
-        agent=parent_concierge_agent,
+        agent=root_agent,
         app_name=APP_NAME,
         session_service=session_service,
         plugins=[logging_plugin],

@@ -201,5 +201,12 @@
     "volume_ml": null,
     "duration_minutes": null,
     "notes": null
+  },
+  {
+    "event_type": "feed",
+    "timestamp": "2025-11-28T11:00:00",
+    "volume_ml": 200,
+    "duration_minutes": 20,
+    "notes": "from the bottle"
   }
 ]

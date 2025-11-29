@@ -1,4 +1,4 @@
-# Parent Concierge — Capstone Project Report
+# Parent Concierge Capstone Project Report
 
 *A submission for the 2025 Agents Intensive - Capstone Project*
 
@@ -10,47 +10,47 @@
 ---
 
 # 1. Overview
-Parenting a newborn involves constant information tracking, consisting of feeds, naps, diapers, milestones, questions for healthcare professionals — all scattered across apps, notes, and memory. This fragmentation increases stress and reduces a parent’s ability to spot meaningful patterns.
+Parenting a newborn involves constant information tracking, consisting of feeds, naps, diapers, milestones, questions for healthcare professionals all scattered across apps, notes, and memory. This makes it difficult to track trends or spot potential health issues amidst the chaos.
 
-**Parent Concierge** is a multi-agent system built with the **Google ADK (Python)** that acts as a personalised assistant for new parents. It automates the logging, summarisation, and interpretation of baby-care events, providing daily insights, summaries, and data-driven context. The system can be extended into health-visitor reporting, schedule assistance, and trend detection.
+**Parent Concierge** is a multi-agent system built with the **Google ADK (Python)** that acts as a personalised assistant for new parents. It automates the logging, summarisation, and interpretation of baby-care events, providing daily insights, summaries, and data-driven context.
 
 ---
 
 # 2. Problem Statement
-New parents must track feeds, naps, diapers, symptoms, and behaviours — often multiple times per hour. These logs matter for:
+New parents must track feeds, naps, diapers, symptoms, and behaviours often multiple times per hour. These logs matter for:
 - Identifying health issues
 - Establishing routines
 - Communicating with doctors
 - Managing sleep and feeding strategies
 
-**Existing apps are rigid, manual, and rarely intelligent.** They also lack multi-modal summaries, proactive insights, or the ability to answer natural language questions.
+**Current apps are manual and lack the logic to answer questions about the data.** They also lack multi-modal summaries, proactive insights, or the ability to answer natural language questions.
 
 **The problem:** Parents need a simple, intelligent system that *automatically* organises baby-care events and produces meaningful summaries and recommendations.
 
 ---
 
 # 3. Solution Summary
-Parent Concierge is a **personal multi-agent ecosystem** that turns raw baby-care logs into structured insights.
+Parent Concierge is a **multi-agent system** that turns scattered notes into clear, useful daily summaries.
 
 ### Core Features
-- **Onboarding Agent** — creates and stores a baby profile.
-- **Care Event Agent** — captures and validates feed/nap/diaper events.
-- **Daily Summary Agent** — transforms all daily events into a structured narrative.
-- **Summary Output Agent** — formats final summaries for parents.
-- **Parallel Summary Team** — evaluates specific aspects of the day concurrently.
-- **Memory** — uses an InMemorySessionService for continuity.
-- **Tools** — custom data stores and plotting features.
-- **Observability** — structured logging.
+- **Onboarding Agent** creates and stores a baby profile.
+- **Care Event Agent** captures and validates feed/nap/diaper events.
+- **Daily Summary Agent** transforms all daily events into a structured narrative.
+- **Summary Output Agent** formats final summaries for parents.
+- **Parallel Summary Team** evaluates specific aspects of the day concurrently.
+- **Memory** uses an InMemorySessionService for continuity.
+- **Tools** custom data stores and plotting features.
+- **Observability** structured logging.
 
 ---
 
 # 4. Architecture
 
 ## 4.1 High-Level Diagram
-
+![](./parent_concierge/assets/parent_concierge_architecture.png)
 
 ## 4.2 Agents
-### **Orchestrator Agent**
+### **Parent Concierge Agent**
 - Entry point for the user.
 - Routes messages to the appropriate sub-agent.
 - Manages session context.
@@ -69,14 +69,14 @@ Parent Concierge is a **personal multi-agent ecosystem** that turns raw baby-car
 - Creates structured summary objects.
 
 ### **Parallel Summary Team**
-- Feed Summary Agent
-- Nap Summary Agent
-- Diaper Summary Agent
+- Compute Stats Agent
+- Narrative Summary Agent
+- Visualizations Agent.
 - Each runs concurrently via ADK parallel agent patterns.
 
 ### **Summary Output Agent**
 - Combines outputs from the team.
-- Produces parent-friendly narrative + structured JSON.
+- Produces parent-friendly narrative.
 - Generates optional charts (Matplotlib with icon overlays).
 
 ---
@@ -93,9 +93,7 @@ Parent Concierge is a **personal multi-agent ecosystem** that turns raw baby-car
 
 ## ✔ Sessions & Memory
 - InMemorySessionService for persistent session state
-
-## ✔ Context Engineering
-- Structured schema objects to limit token usage
+- Local JSON files for persistent user data storage
 
 ## ✔ Observability
 - Logging for: event capture, routing, summarisation
@@ -108,7 +106,7 @@ Parent Concierge is a **personal multi-agent ecosystem** that turns raw baby-car
 |------|---------|
 | `BabyProfileStore` | Create/update profile, fetch profile |
 | `CareLogStore` | Append care-event records + retrieve logs |
-| `SummaryPlotter` | Matplotlib graph with overlay icons |
+| `VisualizationsTool` | Matplotlib graph with overlay icons |
 
 ---
 
@@ -124,17 +122,16 @@ parent_concierge/
 ├── subagents/
 │   ├── onboarding_agent.py
 │   ├── care_event_agent.py
+│   ├── care_event_fetcher.py
 │   ├── daily_summary_agent.py
 │   ├── summary_output_agent.py
-│   └── parallel_summary/
-│       ├── feed_agent.py
-│       ├── nap_agent.py
-│       └── diaper_agent.py
+│   └── parallel_summary_team.py
+
 │
 ├── tools/
 │   ├── baby_profile_store.py
 │   ├── care_log_store.py
-│   └── summary_plotter.py
+│   └── visualizations_tools.py
 │
 └── assets/
     ├── feed_icon.png
@@ -156,28 +153,39 @@ parent_concierge/
 pip install -r requirements.txt
 ```
 
+## Create an `.env` file
+```
+echo "GEMINI_API_KEY=ABC123" >> .env
+```
+
 ## Run the Agent Locally
 ```bash
-
+python -m parent_concierge.cli_main
 ```
 
 ## Web UI
 ```bash
-adk web parent_concierge
+adk web
 ```
 
 ---
 
 # 9. Example Usage
-### **1. Start the system**
+### **1. Start the system: New user**
 ```text
-Welcome to Parent Concierge! How can I help?
+Hello! I'm here to help you set up your baby's profile.
+
+First, could you please tell me your name?
 ```
-### **2. Add a feed**
+### **2. Start the system: Existing user**
+```text
+Hello Stephen! Great to see you. How can I help you and Leo today?
+```
+### **3. Add a feed**
 ```
 "Leo had 120ml of formula at 2:10pm"
 ```
-### **3. Daily summary**
+### **4. Daily summary**
 ```
 "How was today?"
 ```
@@ -185,7 +193,7 @@ Returns a narrative + optional chart.
 
 ---
 
-# 11. Limitations & Future Work
+# 10. Limitations & Future Work
 ### Current limitations
 - Local-only memory store
 - No reminders or push system
@@ -200,6 +208,6 @@ Returns a narrative + optional chart.
 
 ---
 
-# 12. Conclusion
-Parent Concierge demonstrates a complete multi-agent architecture that genuinely assists new parents with daily childcare logs, summaries, and actionable insights. It uses a wide range of ADK features — agents, tools, memory, observability, and optional deployment — meeting all core Capstone documentation criteria.
+# 11. Conclusion
+Parent Concierge demonstrates a complete multi-agent architecture that assists new parents with daily childcare logs, summaries, and actionable insights. It uses a wide range of ADK features: agents, tools, memory, observability, and all core Capstone criteria.
 
