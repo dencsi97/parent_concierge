@@ -181,11 +181,11 @@ Hello! I'm here to help you set up your baby's profile.
 First, could you please tell me your name?
 ```
 
-(N.b. if you would like to run this use case delete all sample data in `data/*.json`
 ### **2. Start the system: Existing user**
 ```text
 Hello Stephen! Great to see you. How can I help you and Leo today?
 ```
+> **NOTE:** Sample data has been included for exisitng user use cases. See `data/*_sample.json`.
 ### **3. Add a feed**
 ```
 "Leo had 120ml of formula at 2:10pm"
