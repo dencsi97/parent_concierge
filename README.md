@@ -168,6 +168,10 @@ python -m parent_concierge.cli_main
 adk web
 ```
 
+### Data and privacy
+- Sample JSON files in `data/` are fictional fixtures for demos and tests; they contain no real user information.
+- Keep sensitive information (e.g., API keys) in a local `.env` file and never commit secrets to version control.
+
 ---
 
 # 9. Example Usage
