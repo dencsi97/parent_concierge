@@ -4,8 +4,7 @@
 
 > **Track:** Concierge Agents  
 > **Author:** Daniel Parkin  
-> **Repository:** *(insert GitHub public repo link)*  
-
+> **Repository:** https://github.com/dencsi97/parent_concierge
 
 ---
 
